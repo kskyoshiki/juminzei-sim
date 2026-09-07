@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>住民税シミュレーター|年収・家族構成から住民税額を簡単計算</title>
+<meta name="description" content="年収と家族構成を入力するだけで、住民税(所得割+均等割)の目安をすぐに計算できる無料シミュレーターです。">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+<style>
+  :root{--bg:#FAF5EE;--ink:#241E18;--accent:#B5622A;--accent-soft:#EDD9C4;--line:#DDD5C8;--card:#fff;}
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:"Hiragino Sans","Noto Sans JP",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;}
+  header{padding:28px 20px 18px;border-bottom:1px solid var(--line);text-align:center;}
+  header h1{font-size:1.4rem;margin:0 0 6px;}
+  header p{margin:0;font-size:0.85rem;color:#6B5E50;}
+  main{max-width:640px;margin:0 auto;padding:24px 16px 60px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;margin-bottom:20px;}
+  label{display:block;font-weight:600;font-size:0.9rem;margin-bottom:6px;margin-top:18px;}
+  select,input[type=number]{width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;font-size:1rem;background:#FFFCF8;}
+  button#calcBtn{width:100%;margin-top:24px;padding:16px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-size:1.05rem;font-weight:700;cursor:pointer;}
+  button#calcBtn:hover{background:#9A5123;}
+  #result{display:none;margin-top:24px;}
+  .result-main{padding:20px;background:var(--accent-soft);border-radius:12px;text-align:center;}
+  .result-main .amount{font-size:2rem;font-weight:800;color:var(--accent);margin:8px 0;}
+  table.breakdown{width:100%;border-collapse:collapse;margin-top:16px;font-size:0.9rem;}
+  table.breakdown th,table.breakdown td{border:1px solid var(--line);padding:8px 10px;text-align:right;}
+  table.breakdown th{text-align:left;background:#F3EDE4;}
+  .ad-slot{margin:24px auto;min-height:100px;border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;color:#999;font-size:0.75rem;}
+  .disclaimer{font-size:0.75rem;color:#888;margin-top:24px;border-top:1px solid var(--line);padding-top:16px;}
+  footer{text-align:center;font-size:0.75rem;color:#999;padding:20px;}
+</style>
+</head>
+<body>
+<header>
+  <h1>住民税シミュレーター</h1>
+  <p>年収と家族構成を入力するだけ。住民税の年間目安額が30秒でわかります。</p>
+</header>
+<main>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block;width:100%;" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="6666666661" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+  <div class="card">
+    <label for="income">年収(給与収入・税込)</label>
+    <input type="number" id="income" placeholder="例:500" step="10">
+    <p style="font-size:0.8rem;color:#999;margin:4px 0 0;">単位:万円</p>
+
+    <label for="family">家族構成</label>
+    <select id="family">
+      <option value="single">独身</option>
+      <option value="spouse">配偶者あり(配偶者控除対象)</option>
+      <option value="spouse_child1">配偶者+子1人</option>
+      <option value="spouse_child2">配偶者+子2人</option>
+    </select>
+
+    <button id="calcBtn">住民税を計算する</button>
+
+    <div id="result">
+      <div class="result-main">
+        <div>住民税(年額)の目安</div>
+        <div class="amount" id="totalText">¥0</div>
+        <div style="font-size:0.8rem;color:#6B5E50;">道府県民税+市町村民税の合計概算です</div>
+      </div>
+      <table class="breakdown">
+        <tr><th>給与所得金額</th><td id="rowEarnings">¥0</td></tr>
+        <tr><th>所得控除合計(概算)</th><td id="rowDeduction">¥0</td></tr>
+        <tr><th>課税所得金額</th><td id="rowTaxable">¥0</td></tr>
+        <tr><th>所得割(10%)</th><td id="rowRate">¥0</td></tr>
+        <tr><th>均等割</th><td id="rowFlat">¥5,000</td></tr>
+        <tr><th>住民税合計</th><td id="rowTotal">¥0</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block;width:100%;" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="6666666662" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+  <div class="disclaimer">
+    本シミュレーターは概算計算です。住民税は前年の所得に基づき翌年6月から課税されます。社会保険料控除・生命保険料控除等は含まれておらず、実際の税額は自治体により異なる場合があります。正確な金額はお住まいの市区町村にご確認ください。
+  </div>
+</main>
+<footer>© 2026 住民税シミュレーター | <a href="/privacy.html">プライバシーポリシー</a> | <a href="/about.html">運営者情報</a></footer>
+<script>
+function calcSalaryIncome(income) {
+  // 給与所得控除(2024年度以降)
+  if (income <= 550000) return 0;
+  if (income <= 1625000) return income - 550000;
+  if (income <= 1800000) return income * 0.6 - 100000; // 概算
+  if (income <= 3600000) return income * 0.7 - 180000;
+  if (income <= 6600000) return income * 0.8 - 540000;
+  if (income <= 8500000) return income * 0.9 - 1200000;
+  return income - 1950000;
+}
+
+const familyDeductions = {
+  single:       0,
+  spouse:       330000,
+  spouse_child1:330000 + 330000,
+  spouse_child2:330000 + 330000 + 330000
+};
+
+document.getElementById('calcBtn').addEventListener('click', function() {
+  const incomeMan = parseFloat(document.getElementById('income').value);
+  const family = document.getElementById('family').value;
+  if (!incomeMan || incomeMan <= 0) { alert('年収を入力してください'); return; }
+
+  const income = incomeMan * 10000;
+  const salaryIncome = calcSalaryIncome(income);
+  const basicDeduction = 430000; // 住民税の基礎控除(合計所得2400万以下)
+  const socialInsurance = Math.floor(income * 0.14); // 社会保険料概算14%
+  const familyDed = familyDeductions[family];
+  const totalDeduction = basicDeduction + socialInsurance + familyDed;
+  const taxable = Math.max(0, Math.floor((salaryIncome - totalDeduction) / 1000) * 1000);
+  const rateAmount = Math.floor(taxable * 0.10);
+  const flatAmount = 5000;
+  const total = rateAmount + flatAmount;
+
+  document.getElementById('rowEarnings').textContent = '¥' + salaryIncome.toLocaleString();
+  document.getElementById('rowDeduction').textContent = '¥' + totalDeduction.toLocaleString();
+  document.getElementById('rowTaxable').textContent = '¥' + taxable.toLocaleString();
+  document.getElementById('rowRate').textContent = '¥' + rateAmount.toLocaleString();
+  document.getElementById('rowTotal').textContent = '¥' + total.toLocaleString();
+  document.getElementById('totalText').textContent = '¥' + total.toLocaleString();
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+  if(typeof gtag==='function') gtag('event','calc_juminzei',{income_man:incomeMan,family,total});
+});
+</script>
+</body>
+</html>
